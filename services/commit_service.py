@@ -16,15 +16,54 @@ def get_commit_changes(commit_hashes=None):
     if commit_hashes:
         git_command.extend(commit_hashes)
 
-    # Run the command and capture the output
-    result = subprocess.run(
-        git_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+    # Add exclude patterns after the commit hashes
+    git_command.extend(
+        [
+            "--",  # Separator between commits and pathspecs
+            ":(exclude)*.md",
+            ":(exclude)*.lock",
+            ":(exclude)*.config.js",
+            ":(exclude)*.json",
+            ":(exclude)*.yml",
+            ":(exclude)*.yaml",
+            ":(exclude)Dockerfile",
+            ":(exclude).env*",
+            ":(exclude).github/**",
+            ":(exclude).husky/**",
+            ":(exclude)docs/**",
+            ":(exclude)tests/**",
+            ":(exclude)__tests__/**",
+            ":(exclude)*.test.*",
+            ":(exclude)*.spec.*",
+            ":(exclude)dist/**",
+            ":(exclude)build/**",
+            ":(exclude)node_modules/**",
+            ":(exclude)vendor/**",
+            ":(exclude)*.png",
+            ":(exclude)*.jpg",
+            ":(exclude)*.jpeg",
+            ":(exclude)*.gif",
+            ":(exclude)*.svg",
+            ":(exclude)*.ico",
+            ":(exclude)*.pdf",
+            ":(exclude)*.xlsx",
+            ":(exclude)*.csv",
+        ]
     )
 
-    if result.returncode != 0:
-        print(f"Error: {result.stderr}")
-    else:
+    # Run the command and capture the output
+    try:
+        result = subprocess.run(
+            git_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+
+        if result.returncode != 0:
+            print(f"Error: {result.stderr}")
+            return None
         return result.stdout
+    except Exception as e:
+        print(f"Error executing git command: {e}")
+        return None
 
 
 def get_commit_hashes_from_json(json_file_path="changelog/commits.json"):
@@ -73,9 +112,9 @@ def get_all_main_branch_commits():
     return commit_hashes
 
 
-# Example usage with specific commits
-commit_hashes = [
-    "f2111cf5db9369b883609f66cfe09afaab522dad"
-]  # Replace with actual commit hashes
-commit_changes = get_commit_changes(commit_hashes)
-print(commit_changes)
+if __name__ == "__main__":
+    commit_hashes = [
+        "f2111cf5db9369b883609f66cfe09afaab522dad",
+    ]
+    commit_changes = get_commit_changes(commit_hashes)
+    print(commit_changes)
