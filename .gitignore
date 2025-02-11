@@ -11,3 +11,9 @@ wheels/
 
 # dot env
 .env
+
+# Remove or comment out the *.json line if it exists
+# *.json
+
+# version.json
+version.json
