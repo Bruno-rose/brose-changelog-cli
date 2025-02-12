@@ -36,7 +36,7 @@ wheels = [
 [[package]]
 name = "changelog-cli"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "jinja2" },
@@ -49,17 +49,29 @@ dependencies = [
     { name = "uvicorn" },
 ]
 
+[package.optional-dependencies]
+web = [
+    { name = "fastapi" },
+    { name = "jinja2" },
+    { name = "markdown" },
+    { name = "uvicorn" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115.8" },
+    { name = "fastapi", marker = "extra == 'web'", specifier = ">=0.115.8" },
     { name = "jinja2", specifier = ">=3.1.5" },
+    { name = "jinja2", marker = "extra == 'web'", specifier = ">=3.1.5" },
     { name = "markdown", specifier = ">=3.7" },
+    { name = "markdown", marker = "extra == 'web'", specifier = ">=3.7" },
     { name = "openai", specifier = ">=1.61.1" },
     { name = "pydantic", specifier = ">=2.10.6" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "python-multipart", specifier = ">=0.0.20" },
     { name = "typer", specifier = ">=0.15.1" },
     { name = "uvicorn", specifier = ">=0.34.0" },
+    { name = "uvicorn", marker = "extra == 'web'", specifier = ">=0.34.0" },
 ]
 
 [[package]]

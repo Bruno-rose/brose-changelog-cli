@@ -1,17 +1,16 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 import markdown
 import os
+from changelog_cli.web.config import templates
 
-app = FastAPI()
-templates = Jinja2Templates(directory="templates")
+router = APIRouter()
 
 CHANGELOG_PATH = "CHANGELOG.md"
 
 
-@app.get("/", response_class=HTMLResponse)
+@router.get("/", response_class=HTMLResponse)
 async def render_changelog(request: Request):
     if os.path.exists(CHANGELOG_PATH):
         with open(CHANGELOG_PATH, "r", encoding="utf-8") as file:
@@ -23,9 +22,3 @@ async def render_changelog(request: Request):
     return templates.TemplateResponse(
         "index.html", {"request": request, "content": html_content}
     )
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="127.0.0.1", port=8000)

@@ -1,0 +1,154 @@
+{
+  "a9d6a1f382a79699b01b4d2d00f9eddf1dcfa8bd": {
+    "hash": "a9d6a1f382a79699b01b4d2d00f9eddf1dcfa8bd",
+    "author": "Bruno",
+    "date": "Tue Feb 11 17:38:17 2025 -0600",
+    "message": "chore: update gitignore",
+    "changes": {
+      "Added": [
+        "Added entries for version.json in .gitignore"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": [
+        "Removed the *.json line from .gitignore"
+      ]
+    }
+  },
+  "07acba13a5e369e2b3e9587e76538556a92eb97f": {
+    "hash": "07acba13a5e369e2b3e9587e76538556a92eb97f",
+    "author": "Bruno",
+    "date": "Tue Feb 11 10:27:04 2025 -0600",
+    "message": "feat: add generate readme and release command",
+    "changes": {
+      "Added": [
+        "Command to generate changelog entries from commits",
+        "Command to generate README file"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "f892e76281ae4094f6661316d18679a74c3c1001": {
+    "hash": "f892e76281ae4094f6661316d18679a74c3c1001",
+    "author": "Bruno",
+    "date": "Tue Feb 11 10:24:31 2025 -0600",
+    "message": "feat: add error handling on openai client",
+    "changes": {
+      "Added": [
+        "Imported json module in open_ai_client.py"
+      ],
+      "Fixed": [],
+      "Changed": [
+        "Replaced openai.api_key assignment with openai.OpenAI initialization in open_ai_client.py"
+      ],
+      "Removed": []
+    }
+  },
+  "ff67cb0e66e9e6a6c236db6d52effd64e4d3def7": {
+    "hash": "ff67cb0e66e9e6a6c236db6d52effd64e4d3def7",
+    "author": "Bruno",
+    "date": "Tue Feb 11 10:23:32 2025 -0600",
+    "message": "feat: add markdown viewer",
+    "changes": {
+      "Added": [
+        "Created markdown_viewer.py for rendering CHANGELOG.md in HTML format",
+        "Added templates folder with index.html for displaying rendered markdown content"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "3c2cb7653f4c6e83293c6c682350107287b86b75": {
+    "hash": "3c2cb7653f4c6e83293c6c682350107287b86b75",
+    "author": "Bruno",
+    "date": "Tue Feb 11 10:22:16 2025 -0600",
+    "message": "chore: update dependencies",
+    "changes": {
+      "Added": [
+        "Dependencies: fastapi, jinja2, markdown, python-multipart, uvicorn"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "b44b50423ad7e9fa5292194e11220e440c883c75": {
+    "hash": "b44b50423ad7e9fa5292194e11220e440c883c75",
+    "author": "Bruno",
+    "date": "Tue Feb 11 10:21:38 2025 -0600",
+    "message": "feat: exclude chore files",
+    "changes": {
+      "Added": [],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": [
+        "Excluded various file types and directories like markdown files, lock files, configuration files, JSON files, YAML files, Dockerfile, environment files, GitHub-related files, Husky configuration files, documentation files, test files, image files (png, jpg, jpeg, gif, svg, ico), PDF files, and spreadsheet files (xlsx, csv)."
+      ]
+    }
+  },
+  "b9896049665d3cb3462f7fef39878724490334e8": {
+    "hash": "65d52fb5fb603eb9e1a0f00522b714a0675a4a30",
+    "author": "Bruno",
+    "date": "Fri Feb 7 16:37:08 2025 -0600",
+    "message": "feat: add open ai client",
+    "changes": {
+      "Added": [
+        "Created a new file clients/open_ai_client.py to handle interactions with OpenAI API",
+        "Imported necessary modules for OpenAI interaction",
+        "Configured OpenAI API with the provided API key"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "fdb446aa58edc682945f8d0a801dca2d8ea92725": {
+    "hash": "fdb446aa58edc682945f8d0a801dca2d8ea92725",
+    "author": "Bruno",
+    "date": "Fri Feb 7 16:37:24 2025 -0600",
+    "message": "feat: add git commit service",
+    "changes": {
+      "Added": [
+        "Created a new file 'commit_service.py' in the 'services' directory"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "65d52fb5fb603eb9e1a0f00522b714a0675a4a30": {
+    "hash": "65d52fb5fb603eb9e1a0f00522b714a0675a4a30",
+    "author": "Bruno",
+    "date": "Fri Feb 7 16:37:08 2025 -0600",
+    "message": "feat: add open ai client",
+    "changes": {
+      "Added": [
+        "Added OpenAI client implementation",
+        "Added configuration for OpenAI API key"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  },
+  "f2111cf5db9369b883609f66cfe09afaab522dad": {
+    "hash": "f2111cf5db9369b883609f66cfe09afaab522dad",
+    "author": "Bruno",
+    "date": "Wed Feb 5 14:25:05 2025 -0600",
+    "message": "initial commit",
+    "changes": {
+      "Added": [
+        "Ignored Python-generated files and virtual environments in .gitignore",
+        "Added .python-version file with Python version 3.12",
+        "Created main.py with commands for saying hello and goodbye",
+        "Added pyproject.toml with project metadata and dependencies"
+      ],
+      "Fixed": [],
+      "Changed": [],
+      "Removed": []
+    }
+  }
+}

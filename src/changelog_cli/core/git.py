@@ -66,9 +66,9 @@ def get_commit_changes(commit_hashes=None):
         return None
 
 
-def get_commit_hashes_from_json(json_file_path="changelog/commits.json"):
+def get_commit_hashes_from_json(json_file_path="changelog/changelog.json"):
     """
-    Extract commit hashes from the commits.json file
+    Extract commit hashes from the changelog.json file
 
     Args:
         json_file_path (str): Path to the JSON file containing commit information
@@ -81,7 +81,7 @@ def get_commit_hashes_from_json(json_file_path="changelog/commits.json"):
     try:
         with open(json_file_path, "r") as file:
             data = json.load(file)
-            return [commit["hash"] for commit in data.get("commits", [])]
+            return list(data.keys())
     except FileNotFoundError:
         print(f"Error: JSON file not found at {json_file_path}")
         return []
@@ -110,6 +110,22 @@ def get_all_main_branch_commits():
     # Split the output into individual commit hashes
     commit_hashes = result.stdout.strip().split("\n")
     return commit_hashes
+
+
+def commits_to_generate_changelogs():
+    """
+    Get all new commits from the main branch
+
+    Returns:
+        list: List of new commit hashes from the main branch
+    """
+
+    new_commmits_hashes = get_all_main_branch_commits()
+    old_commmits_hashes = get_commit_hashes_from_json()
+
+    return [
+        commit for commit in new_commmits_hashes if commit not in old_commmits_hashes
+    ]
 
 
 if __name__ == "__main__":

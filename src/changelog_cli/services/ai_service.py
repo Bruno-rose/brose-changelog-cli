@@ -1,10 +1,10 @@
-from typing import Dict, List, Optional
+from typing import List, Optional
+
 from pydantic import BaseModel
 import openai
 import os
 import json
 from dotenv import load_dotenv
-from services.commit_service import get_commit_changes
 
 load_dotenv()
 
@@ -135,9 +135,3 @@ def generate_changelog(commit_info: str) -> Commit:
             message="Error generating changelog",
             changes=CommitChanges(),
         )
-
-
-if __name__ == "__main__":
-    commit_info = get_commit_changes(["fdb446aa58edc682945f8d0a801dca2d8ea92725"])
-    print("commit_info token length:", len(commit_info))
-    print(generate_changelog(commit_info))
