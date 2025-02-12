@@ -88,8 +88,7 @@ def get_commit_hashes_from_json(json_file_path="changelog/changelog.json"):
             data = json.load(file)
             return list(data.keys())
     except FileNotFoundError:
-        print(f"Error: JSON file not found at {json_file_path}")
-        return []
+        return []  # Silently return empty list if file doesn't exist yet
     except json.JSONDecodeError:
         print("Error: Invalid JSON format")
         return []
