@@ -31,7 +31,8 @@ def format_entries_by_type(entries: dict) -> str:
     # Group changes by week
     changes_by_week = {}
     for commit_hash, entry in entries.items():
-        if commit_hash == "version_map":
+        # Skip version_map and error entries
+        if commit_hash == "version_map" or entry.get("hash") == "error":
             continue
 
         # Parse the date string to datetime
