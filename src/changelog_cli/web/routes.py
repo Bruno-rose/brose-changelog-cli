@@ -3,11 +3,20 @@ from fastapi.responses import HTMLResponse
 from starlette.requests import Request
 import markdown
 import os
-from changelog_cli.web.config import templates
+from pathlib import Path
+import importlib.resources as pkg_resources
+from changelog_cli.web import templates  # assuming this is your package structure
+from fastapi.templating import Jinja2Templates
 
 router = APIRouter()
 
 CHANGELOG_PATH = "CHANGELOG.md"
+
+# Get the absolute path to the templates directory
+TEMPLATES_DIR = Path(pkg_resources.files("changelog_cli.web") / "templates")
+
+# Initialize templates with absolute path
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 
 @router.get("/", response_class=HTMLResponse)
