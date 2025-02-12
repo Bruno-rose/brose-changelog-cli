@@ -1,15 +1,21 @@
 import subprocess
 
 
-def get_commit_changes(commit_hashes=None):
+def get_commit_changes(commit_hashes: list[str] = None):
     # Git command to get commit history with changes and 50-line context
     git_command = [
         "git",
         "log",
+        "--no-walk",
         "-p",
-        "-U50",
+        "-U25",
         "--no-renames",
-        "--pretty=format:commit %H%nAuthor: %an%nDate: %ad%n%n%s%n",
+        "--pretty=format:%n%x1b[1;36m-----------------------------------------%n\
+commit: %H%n\
+author: %an%n\
+date: %ad%n\
+message: %s%n\
+-----------------------------------------%x1b[0m%n",
     ]
 
     # Add specific commits if provided
@@ -20,7 +26,6 @@ def get_commit_changes(commit_hashes=None):
     git_command.extend(
         [
             "--",  # Separator between commits and pathspecs
-            ":(exclude)*.md",
             ":(exclude)*.lock",
             ":(exclude)*.config.js",
             ":(exclude)*.json",
@@ -131,6 +136,7 @@ def commits_to_generate_changelogs():
 if __name__ == "__main__":
     commit_hashes = [
         "f2111cf5db9369b883609f66cfe09afaab522dad",
+        "3a87de6fa0def8c20f4ca511769cb27aff45239e",
     ]
     commit_changes = get_commit_changes(commit_hashes)
     print(commit_changes)
