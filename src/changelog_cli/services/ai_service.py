@@ -12,11 +12,16 @@ load_dotenv()
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
+class Change(BaseModel):
+    description: str
+    relevance_score: int
+
+
 class CommitChanges(BaseModel):
-    Added: Optional[List[str]] = []
-    Fixed: Optional[List[str]] = []
-    Changed: Optional[List[str]] = []
-    Removed: Optional[List[str]] = []
+    Added: Optional[List[Change]] = []
+    Fixed: Optional[List[Change]] = []
+    Changed: Optional[List[Change]] = []
+    Removed: Optional[List[Change]] = []
 
 
 class Commit(BaseModel):
@@ -61,6 +66,11 @@ def generate_changelog(commit_info: str) -> Commit:
         - Group related changes together
         - Use clear, non-technical language where possible
         - For bug fixes, explain what was fixed rather than just stating "fixed bug"
+        - For each change, assign a relevance score (1-10) based on how important it is for end-users:
+          * 10: Critical functionality or security-related changes
+          * 7-9: Major features or significant improvements
+          * 4-6: Minor features or quality-of-life improvements
+          * 1-3: Technical changes with minimal user impact
         
         Return only a JSON object following this structure:
         {{
@@ -69,10 +79,18 @@ def generate_changelog(commit_info: str) -> Commit:
             "date": "commit date",
             "message": "commit message",
             "changes": {{
-                "Added": ["list of user-friendly additions"],
-                "Fixed": ["list of user-friendly fixes"],
-                "Changed": ["list of user-friendly changes"],
-                "Removed": ["list of user-friendly removals"]
+                "Added": [
+                    {{"description": "user-friendly description", "relevance_score": number}}
+                ],
+                "Fixed": [
+                    {{"description": "user-friendly description", "relevance_score": number}}
+                ],
+                "Changed": [
+                    {{"description": "user-friendly description", "relevance_score": number}}
+                ],
+                "Removed": [
+                    {{"description": "user-friendly description", "relevance_score": number}}
+                ]
             }}
         }}
 
@@ -90,7 +108,6 @@ def generate_changelog(commit_info: str) -> Commit:
                 {"role": "user", "content": prompt},
             ],
             temperature=0.7,
-            # use response format
         )
 
         # Add debug logging

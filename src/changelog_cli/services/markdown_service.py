@@ -54,9 +54,6 @@ def format_entries_by_type(entries: dict) -> str:
     content = ""
     # Add each week section
     for week in sorted(changes_by_week.keys(), reverse=True):
-        content += f"## 📅 {week}\n\n"
-
-        # Sort entries within week by date
         week_entries = sorted(
             changes_by_week[week],
             key=lambda x: (
@@ -66,6 +63,23 @@ def format_entries_by_type(entries: dict) -> str:
             ),
             reverse=True,
         )
+
+        # Filter week_entries to only include those with high relevance changes
+        week_entries = [
+            entry
+            for entry in week_entries
+            if any(
+                change.get("relevance_score", 0) >= 6
+                for category in ["Added", "Fixed", "Changed", "Removed"]
+                for change in entry.get("changes", {}).get(category, [])
+            )
+        ]
+
+        # Skip week if no relevant entries
+        if not week_entries:
+            continue
+
+        content += f"## 📅 {week}\n\n"
 
         # Add each commit
         for entry in week_entries:
@@ -92,11 +106,26 @@ def format_entries_by_type(entries: dict) -> str:
 
             for category in ["Added", "Fixed", "Changed", "Removed"]:
                 changes = entry.get("changes", {}).get(category, [])
-                if changes:
+                # Filter changes to only include those with relevance >= 6
+                relevant_changes = [
+                    c for c in changes if c.get("relevance_score", 0) >= 6
+                ]
+
+                if relevant_changes:
                     icon = category_icons.get(category, "")
                     content += f"#### {icon} {category}\n\n"
-                    for change in changes:
-                        content += f"- {change}\n"
+                    # Sort changes by relevance score in descending order
+                    sorted_changes = sorted(
+                        relevant_changes,
+                        key=lambda x: x.get("relevance_score", 0),
+                        reverse=True,
+                    )
+                    for change in sorted_changes:
+                        description = change.get("description", "")
+                        score = change.get("relevance_score", 0)
+                        # Add a visual indicator for high-relevance changes (score >= 7)
+                        importance_marker = "🔥 " if score >= 7 else ""
+                        content += f"- {importance_marker}{description}\n"
                     content += "\n"
 
             # Add a subtle separator between commits
