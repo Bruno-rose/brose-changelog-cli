@@ -49,15 +49,16 @@ changelog web --host 0.0.0.0 --port 3000
 
 ## Configuration
 
-1. Set up your OpenAI API key:
+1. Create a `.env` file:
+```
+OPENAI_API_KEY=your-api-key
+```
+
+2. Optionally, set up your OpenAI API key:
 ```bash
 export OPENAI_API_KEY=your-api-key
 ```
 
-2. Optional: Create a `.env` file:
-```
-OPENAI_API_KEY=your-api-key
-```
 
 ## How It Works
 
@@ -79,17 +80,3 @@ OPENAI_API_KEY=your-api-key
 - Python ≥ 3.12
 - Git repository
 - OpenAI API key
-
-## Optional Dependencies
-
-Web viewer requires additional packages:
-- FastAPI
-- Uvicorn
-- Jinja2
-- Markdown
-
-These are automatically installed when using the `[web]` extra:
-
-```bash
-uv install "brose-changelog-cli[web]"
-```

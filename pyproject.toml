@@ -4,14 +4,6 @@ changelog = "changelog_cli.cli.main:app"
 [tool.uv]
 package = true
 
-[project.optional-dependencies]
-web = [
-    "fastapi>=0.115.8",
-    "uvicorn>=0.34.0",
-    "jinja2>=3.1.5",
-    "markdown>=3.7",
-]
-
 [dependency-groups]
 dev = [
     "twine>=6.1.0",
