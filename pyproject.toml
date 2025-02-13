@@ -11,7 +11,7 @@ dev = [
 
 [project]
 name = "brose-changelog-cli"
-version = "0.1.1"
+version = "1.0.0"
 description = "AI-powered changelog generator from git commits"
 authors = [
     {name = "bruno", email = "contact@brunorodriguez.dev"}
