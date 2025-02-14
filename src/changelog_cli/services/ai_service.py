@@ -118,6 +118,7 @@ def generate_changelog(commit_info: str) -> Commit:
         commit_data = json.loads(cleaned_content)
         return Commit.model_validate(commit_data)
     except json.JSONDecodeError:
+        print(f"Invalid JSON response from API: {cleaned_content}")
         return Commit(
             hash="error",
             author="unknown",

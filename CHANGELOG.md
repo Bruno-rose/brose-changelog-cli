@@ -5,17 +5,70 @@ All notable changes to this project will be documented on this site.
 ---
 ## 📅 Week of February 10, 2025
 
-### 🔖 chore: update gitignore
+### 🔖 feat: update readme
 
-*February 11, 2025 at 05:38 PM*
+*February 13, 2025 at 10:43 AM*
 
 #### ✨ Added
 
-- Added entries for version.json in .gitignore
+- 🔥 Added relevance scoring (1-10) to highlight important updates
+- Added automatic categorization (Added, Fixed, Changed, Removed)
 
-#### 🗑️ Removed
+---
 
-- Removed the *.json line from .gitignore
+### 🔖 feat: update dependencies
+
+*February 13, 2025 at 10:39 AM*
+
+#### ✨ Added
+
+- Added ability to customize host and port for the web viewer
+
+---
+
+### 🔖 feat: fix commit info format
+
+*February 12, 2025 at 05:32 PM*
+
+#### 📝 Changed
+
+- Adjusted the number of lines displayed in commit history to 25 lines for better readability
+
+---
+
+### 🔖 fix: add template route
+
+*February 12, 2025 at 05:31 PM*
+
+#### ✨ Added
+
+- Added template route for rendering changelog content
+
+---
+
+### 🔖 feat: update readme
+
+*February 12, 2025 at 01:28 PM*
+
+#### ✨ Added
+
+- 🔥 AI-powered analysis of git commits
+- 🔥 Structured changelog generation
+- 🔥 Web viewer for changelogs
+- 🔥 AI Processing with GPT model to categorize changes, generate descriptions, and assign relevance scores
+- Smart filtering of relevant changes
+- Relevance scoring for changes
+- Changelog Generation organizing changes by week, commit, category, and relevance
+
+---
+
+### 🔖 fix: skips commits with errors
+
+*February 12, 2025 at 01:09 PM*
+
+#### 🔧 Fixed
+
+- 🔥 Skips commits with errors to prevent processing issues
 
 ---
 
@@ -25,8 +78,9 @@ All notable changes to this project will be documented on this site.
 
 #### ✨ Added
 
-- Command to generate changelog entries from commits
-- Command to generate README file
+- 🔥 Added commands 'generate', 'readme', and 'release' to handle changelog and release creation
+- Added services to interact with commits and generate changelog entries
+- Added client to interact with Open AI for changelog generation
 
 ---
 
@@ -36,11 +90,7 @@ All notable changes to this project will be documented on this site.
 
 #### ✨ Added
 
-- Imported json module in open_ai_client.py
-
-#### 📝 Changed
-
-- Replaced openai.api_key assignment with openai.OpenAI initialization in open_ai_client.py
+- 🔥 Implemented error handling in the OpenAI client to manage errors effectively.
 
 ---
 
@@ -50,28 +100,7 @@ All notable changes to this project will be documented on this site.
 
 #### ✨ Added
 
-- Created markdown_viewer.py for rendering CHANGELOG.md in HTML format
-- Added templates folder with index.html for displaying rendered markdown content
-
----
-
-### 🔖 chore: update dependencies
-
-*February 11, 2025 at 10:22 AM*
-
-#### ✨ Added
-
-- Dependencies: fastapi, jinja2, markdown, python-multipart, uvicorn
-
----
-
-### 🔖 feat: exclude chore files
-
-*February 11, 2025 at 10:21 AM*
-
-#### 🗑️ Removed
-
-- Excluded various file types and directories like markdown files, lock files, configuration files, JSON files, YAML files, Dockerfile, environment files, GitHub-related files, Husky configuration files, documentation files, test files, image files (png, jpg, jpeg, gif, svg, ico), PDF files, and spreadsheet files (xlsx, csv).
+- 🔥 Added a markdown viewer to display a CHANGELOG.md file in HTML format
 
 ---
 
@@ -83,7 +112,7 @@ All notable changes to this project will be documented on this site.
 
 #### ✨ Added
 
-- Created a new file 'commit_service.py' in the 'services' directory
+- 🔥 Added a new service to retrieve commit changes with context
 
 ---
 
@@ -93,33 +122,7 @@ All notable changes to this project will be documented on this site.
 
 #### ✨ Added
 
-- Created a new file clients/open_ai_client.py to handle interactions with OpenAI API
-- Imported necessary modules for OpenAI interaction
-- Configured OpenAI API with the provided API key
-
----
-
-### 🔖 feat: add open ai client
-
-*February 07, 2025 at 04:37 PM*
-
-#### ✨ Added
-
-- Added OpenAI client implementation
-- Added configuration for OpenAI API key
-
----
-
-### 🔖 initial commit
-
-*February 05, 2025 at 02:25 PM*
-
-#### ✨ Added
-
-- Ignored Python-generated files and virtual environments in .gitignore
-- Added .python-version file with Python version 3.12
-- Created main.py with commands for saying hello and goodbye
-- Added pyproject.toml with project metadata and dependencies
+- 🔥 Added new file 'open_ai_client.py' for interacting with the OpenAI API.
 
 ---
 

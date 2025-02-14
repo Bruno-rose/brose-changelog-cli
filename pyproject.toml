@@ -6,6 +6,10 @@ package = true
 
 [dependency-groups]
 dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.24.0",
     "twine>=6.1.0",
 ]
 
@@ -24,6 +28,7 @@ dependencies = [
     "markdown>=3.7",
     "openai>=1.61.1",
     "pydantic>=2.10.6",
+    "pytest>=8.3.4",
     "python-dotenv>=1.0.1",
     "python-multipart>=0.0.20",
     "typer>=0.15.1",
@@ -39,3 +44,8 @@ classifiers = [
 
 [tool.setuptools.package-data]
 "changelog_cli.web" = ["templates/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=changelog_cli --cov-report=term-missing"
