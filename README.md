@@ -1,5 +1,7 @@
 # brose-changelog-cli
 
+[![PyPI version](https://badge.fury.io/py/brose-changelog-cli.svg)](https://pypi.org/project/brose-changelog-cli/)
+
 An AI-powered changelog generator that creates structured, user-friendly changelogs from your git history.
 
 ## Features
@@ -13,6 +15,12 @@ An AI-powered changelog generator that creates structured, user-friendly changel
 
 ## Installation
 
+Install from [PyPI](https://pypi.org/project/brose-changelog-cli/) using pip:
+```bash
+pip install brose-changelog-cli
+```
+
+Or with uv:
 ```bash
 uv install brose-changelog-cli
 ```
